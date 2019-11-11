@@ -1,0 +1,7 @@
+*.tgz
+.taprc
+.travis.yml
+.nyc_output/
+nyc.config.js
+fixtures/
+test/

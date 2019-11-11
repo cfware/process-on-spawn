@@ -1,0 +1,5 @@
+esm: false
+100: true
+timeout: 60000
+nyc-arg:
+  - "--all"
