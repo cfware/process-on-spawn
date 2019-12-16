@@ -1,6 +1,6 @@
 'use strict';
 const cp = require('child_process');
-const {test} = require('tap');
+const {test} = require('tape');
 const processOnSpawn = require('..');
 
 const dumpEnvFile = require.resolve('../fixtures/dump-env.js');
@@ -80,19 +80,20 @@ function dumpEnvSync(t, clear = true, opts = {}) {
 	return processResult(t, clear, spawnSync([dumpEnvFile], fixOpts(clear, opts)));
 }
 
-test('exports', async t => {
-	t.type(processOnSpawn, 'object');
+test('exports', t => {
+	t.equal(typeof processOnSpawn, 'object');
 	const fns = [
 		'addListener',
 		'prependListener',
 		'removeListener',
 		'removeAllListeners'
 	];
-	t.strictSame(Object.keys(processOnSpawn).sort(), fns.sort());
-	t.strictSame(
+	t.deepEqual(Object.keys(processOnSpawn).sort(), fns.sort());
+	t.deepEqual(
 		fns.map(fn => typeof processOnSpawn[fn]),
 		fns.map(() => 'function')
 	);
+	t.end();
 });
 
 test('basic tests', async t => {
@@ -116,7 +117,7 @@ test('basic tests', async t => {
 	}
 
 	function checkResults(expectedSets, expectedAppends, expectedDump, dumped) {
-		t.strictSame(dumped, expectedDump);
+		t.deepEqual(dumped, expectedDump);
 		t.is(setValueCalled, expectedSets);
 		setValueCalled = 0;
 		t.is(appendValueCalled, expectedAppends);
@@ -172,7 +173,7 @@ test('basic tests', async t => {
 		const {env} = opts;
 		t.throws(() => opts.args.push('ignored'), TypeError);
 		const optProps = ['env', 'cwd', 'execPath', 'args', 'detached', 'uid', 'gid', 'windowsVerbatimArguments', 'windowsHide'];
-		t.strictSame(Object.keys(opts).sort(), optProps.sort());
+		t.deepEqual(Object.keys(opts).sort(), optProps.sort());
 		optProps.forEach(id => {
 			t.throws(() => setOpt(opts, id, null), TypeError);
 			t.throws(() => setOpt(opts, id, 1), TypeError);
@@ -197,15 +198,15 @@ test('basic tests', async t => {
 		t.is(opts.env, replacement);
 		t.is(opts.cwd, cwd);
 		t.is(opts.execPath, process.execPath);
-		t.strictSame(opts.args, [
+		t.deepEqual(opts.args, [
 			process.execPath,
 			dumpEnvFile
 		]);
-		t.strictSame(opts.detached, false);
-		t.strictSame(opts.uid, undefined);
-		t.strictSame(opts.gid, undefined);
-		t.strictSame(opts.windowsVerbatimArguments, false);
-		t.strictSame(opts.windowsHide, false);
+		t.deepEqual(opts.detached, false);
+		t.deepEqual(opts.uid, undefined);
+		t.deepEqual(opts.gid, undefined);
+		t.deepEqual(opts.windowsVerbatimArguments, false);
+		t.deepEqual(opts.windowsHide, false);
 	}
 
 	processOnSpawn.addListener(testError);
@@ -214,4 +215,5 @@ test('basic tests', async t => {
 
 	cwd = '/';
 	await runTests(2, 0, {}, {cwd});
+	t.end();
 });
