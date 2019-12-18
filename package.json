@@ -5,7 +5,7 @@
 	"scripts": {
 		"release": "standard-version --sign",
 		"pretest": "xo",
-		"test": "nyc --silent tape test/*.js | tap-mocha-reporter classic",
+		"test": "nyc --silent tape test/test.js",
 		"posttest": "nyc report --check-coverage"
 	},
 	"engines": {
@@ -27,7 +27,6 @@
 	"devDependencies": {
 		"nyc": "^15.0.0-beta.3",
 		"standard-version": "^7.0.0",
-		"tap-mocha-reporter": "^5.0.0",
 		"tape": "^4.11.0",
 		"xo": "^0.25.3"
 	}
