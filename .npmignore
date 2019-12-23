@@ -1,7 +1,6 @@
 *.tgz
-.taprc
 .travis.yml
-.nyc_output/
-nyc.config.js
+coverage/
+.c8rc.json
 fixtures/
 test/

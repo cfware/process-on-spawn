@@ -5,8 +5,7 @@
 	"scripts": {
 		"release": "standard-version --sign",
 		"pretest": "xo",
-		"test": "nyc --silent tape test/test.js",
-		"posttest": "nyc report --check-coverage"
+		"test": "c8 tape test/test.js"
 	},
 	"engines": {
 		"node": ">=8"
@@ -21,11 +20,16 @@
 		"url": "https://github.com/cfware/process-on-spawn/issues"
 	},
 	"homepage": "https://github.com/cfware/process-on-spawn#readme",
+	"xo": {
+		"rules": {
+			"capitalized-comments": 0
+		}
+	},
 	"dependencies": {
 		"fromentries": "^1.2.0"
 	},
 	"devDependencies": {
-		"nyc": "^15.0.0-beta.3",
+		"c8": "^7.0.0",
 		"standard-version": "^7.0.0",
 		"tape": "^4.11.0",
 		"xo": "^0.25.3"
