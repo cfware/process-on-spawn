@@ -119,7 +119,7 @@ test('basic tests', async t => {
 	function checkResults(expectedSets, expectedAppends, expectedDump, dumped) {
 		// Windows variables oddly injected
 		const actual = {...dumped};
-		for (const id of ['SYSTEMDRIVE', 'SYSTEMROT', 'WINDIR']) {
+		for (const id of ['SYSTEMDRIVE', 'SYSTEMROOT', 'WINDIR']) {
 			delete actual[id];
 		}
 
