@@ -5,7 +5,9 @@
 	"scripts": {
 		"release": "standard-version --sign",
 		"pretest": "xo",
-		"test": "c8 tape test/test.js"
+		"tests-only": "c8 --no-check-coverage -r none tape test/test.js | tap-min",
+		"test": "npm run -s tests-only",
+		"posttest": "if-ver -ge 10 || exit 0; c8 report"
 	},
 	"engines": {
 		"node": ">=8"
@@ -30,7 +32,9 @@
 	},
 	"devDependencies": {
 		"c8": "^7.0.0",
+		"if-ver": "^1.1.0",
 		"standard-version": "^7.0.0",
+		"tap-min": "^2.0.0",
 		"tape": "^4.11.0",
 		"xo": "^0.25.3"
 	}

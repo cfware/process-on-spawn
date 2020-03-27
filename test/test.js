@@ -117,7 +117,13 @@ test('basic tests', async t => {
 	}
 
 	function checkResults(expectedSets, expectedAppends, expectedDump, dumped) {
-		t.deepEqual(dumped, expectedDump);
+		// Windows variables oddly injected
+		const actual = {...dumped};
+		for (const id of ['SYSTEMDRIVE', 'SYSTEMROOT', 'WINDIR']) {
+			delete actual[id];
+		}
+
+		t.deepEqual(actual, expectedDump);
 		t.is(setValueCalled, expectedSets);
 		setValueCalled = 0;
 		t.is(appendValueCalled, expectedAppends);
