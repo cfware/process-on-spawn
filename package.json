@@ -1,6 +1,6 @@
 {
 	"name": "process-on-spawn",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Execute callbacks when child processes are spawned",
 	"scripts": {
 		"release": "standard-version --sign",
