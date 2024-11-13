@@ -1,7 +1,6 @@
 # process-on-spawn
 
 ![Tests][tests-status]
-[![Greenkeeper badge][gk-image]](https://greenkeeper.io/)
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![MIT][license-image]](LICENSE)
@@ -53,7 +52,6 @@ Remove all attached listeners.
 [npm-image]: https://img.shields.io/npm/v/process-on-spawn.svg
 [npm-url]: https://npmjs.org/package/process-on-spawn
 [tests-status]: https://github.com/cfware/process-on-spawn/workflows/Tests/badge.svg
-[gk-image]: https://badges.greenkeeper.io/cfware/process-on-spawn.svg
 [downloads-image]: https://img.shields.io/npm/dm/process-on-spawn.svg
 [downloads-url]: https://npmjs.org/package/process-on-spawn
 [license-image]: https://img.shields.io/npm/l/process-on-spawn.svg
